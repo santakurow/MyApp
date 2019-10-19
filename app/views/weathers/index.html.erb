@@ -1,0 +1,47 @@
+<div class="row">
+
+  <div class="col">
+    <div class="weather-contents">
+      <div class="card text-white mb-3" style="max-width: 40rem;">
+      <%# <div class="card text-white bg-primary mb-3"> %>
+        <div class="card-header">
+          <div id="city-name">
+          </div>
+          <div id="date">
+            <p></p>
+          </div>
+          <div id="today-weather">
+            <p>読み込み中....<p>
+          </div>
+        </div>
+        <div class="card-body">
+          <h5 class="card-title hours-header">3時間ごとの天気</h5>
+          <div id="weather">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="col">
+    <div class="news-contents">
+      <div class="news-header"><h3>新着ニュース</h3></div>
+        <nav>
+          <div class="nav nav-tabs" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link active" id="nav-technology-tab" data-toggle="tab" href="#nav-technology" role="tab" aria-controls="nav-technology" aria-selected="true">テクノロジー</a>
+            <a class="nav-item nav-link" id="nav-economy-tab" data-toggle="tab" href="#nav-economy" role="tab" aria-controls="nav-economy" aria-selected="false">経済</a>
+            <a class="nav-item nav-link" id="nav-politics-tab" data-toggle="tab" href="#nav-politics" role="tab" aria-controls="nav-politics" aria-selected="false">政治</a>
+          </div>
+        </nav>
+        <div class="tab-content" id="nav-tabContent">
+          <div class="tab-pane fade show active" id="nav-technology" role="tabpanel" aria-labelledby="nav-technology-tab">
+            <ul class="list-unstyled" id="news">
+            </ul>
+          </div>
+          <div class="tab-pane fade" id="nav-economy" role="tabpanel" aria-labelledby="nav-economy-tab">...</div>
+          <div class="tab-pane fade" id="nav-politics" role="tabpanel" aria-labelledby="nav-politics-tab">...</div>
+        </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,111 @@
+// Place all the styles related to the weathers controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, h1, h2, h3, h4, h5, h6, div, p, ul, li, input, textarea {
+  margin: 0;
+  padding: 0;
+}
+
+.card {
+  // background: linear-gradient(#90218c, #009b90);
+}
+
+.jump-to-url {
+  text-decoration: none;
+  color: black;
+}
+
+.jump-to-url:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.row {
+  margin-top: 56px;
+  .col {
+    padding: 20px;
+    #city-name {
+      h2 {
+        display: inline-block;
+        font-size: 25px;
+      }
+    }
+    .today-header {
+      font-size: 20px;
+    }
+    #today-weather {
+      display: flex;
+      .today-weather-report {
+        margin: 0 auto;
+        padding: 10px;
+        &__main {
+          padding-bottom: 10px;
+          text-align: center;
+        }
+        &__temp {
+          font-size: 23px;
+          text-align: center;
+        }
+      }
+      // .weather-map {
+      //   margin-left: auto;
+      //   // margin-bottom: 10px;
+      //   img {
+      //     border-radius: 10px;
+      //   }
+      // }
+    }
+    .hours-header {
+      font-size: 16px;
+      margin-left: 20px;
+    }
+    .card-header {
+      padding: 20px;
+    }
+    .card-body {
+      padding-left: 0;
+      padding-right: 0;
+    }
+    #weather {
+      display: flex;
+      overflow-x: scroll;
+      .weather-report {
+        margin: 0 20px;
+      }
+    }
+    .news-header {
+      h3 {
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+    #news {
+      // border-top: 2px solid #ccc;
+      margin: 20px 0;
+      height: 400px;
+      overflow: scroll;
+      .headline {
+        padding: 20px 0;
+        border-bottom: 1px solid #ccc;
+
+        .news {
+          &__title {
+            font-size: 18px;
+          }
+          &__desc {
+            font-size: 14px;
+            margin-top: 16px;
+          }
+        }
+      }
+      .headline:hover {
+        background-color: #f4f4f4;
+      }
+    }
+  }
+}
