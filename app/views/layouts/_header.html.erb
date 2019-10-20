@@ -1,22 +1,38 @@
 <header>
   <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
-    <%# <a class="navbar-brand" href="/" data="{turbolinks: false}">NewsWeb</a> %>
-    <%= link_to "NewsWeb", root_path, class: "navbar-brand", data: {turbolinks: false} %>
+    <div class="container">
+    
+    <i class="fas fa-sun fa-2x mx-3" style="color: orangered;"></i>
+    <em><%= link_to "Weather In Your City?", root_path, class: "navbar-brand mr-0", style: "color: #ccc;", data: {turbolinks: false} %></em>
+    <i class="fas fa-umbrella fa-2x mx-3" style="color: blue;"></i>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
      <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
       <ul class="navbar-nav ml-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="/">Signin<span class="sr-only">(current)</span></a>
+       
+        <li class="nav-item mr-4">
+        <div class="input-group">
+          <select class="custom-select" id="inputGroupSelect04" aria-label="Example select with button addon">
+            <option selected>地域を選択</option>
+            <option value="shibuya">渋谷</option>
+            <option value="sapporo">札幌</option>
+            <option value="tokyo">東京</option>
+            <option value="osaka">大阪</option>
+            <option value="nagoya">名古屋</option>
+            <option value="fukuoka">福岡</option>
+            <option value="naha-shi">那覇</option>
+          </select>
+        </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/">Login</a>
+        <div class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2 search-btn" placeholder="地域を検索(ローマ字)" aria-label="Search">
+          <button class="btn btn-outline-light my-2 my-sm-0">Search</button>
+        </div>
         </li>
-        <%# <li class="nav-item">
-          <a class="nav-link" href="#"></a>
-        </li> %>
       </ul>
+    </div>
     </div>
   </nav>
 </header>

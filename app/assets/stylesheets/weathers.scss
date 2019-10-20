@@ -11,8 +11,13 @@ html, body, h1, h2, h3, h4, h5, h6, div, p, ul, li, input, textarea {
   padding: 0;
 }
 
-.card {
-  // background: linear-gradient(#90218c, #009b90);
+.navbar-brand {
+  color: #ddd; 
+  font-weight: bold;
+}
+
+.search-btn {
+  border-radius: 20px;
 }
 
 .jump-to-url {
@@ -35,6 +40,9 @@ html, body, h1, h2, h3, h4, h5, h6, div, p, ul, li, input, textarea {
         font-size: 25px;
       }
     }
+    #date {
+      margin: 8px 0;
+    }
     .today-header {
       font-size: 20px;
     }
@@ -52,13 +60,6 @@ html, body, h1, h2, h3, h4, h5, h6, div, p, ul, li, input, textarea {
           text-align: center;
         }
       }
-      // .weather-map {
-      //   margin-left: auto;
-      //   // margin-bottom: 10px;
-      //   img {
-      //     border-radius: 10px;
-      //   }
-      // }
     }
     .hours-header {
       font-size: 16px;
@@ -83,9 +84,9 @@ html, body, h1, h2, h3, h4, h5, h6, div, p, ul, li, input, textarea {
         font-size: 16px;
         font-weight: bold;
       }
+      margin-bottom: 15px;
     }
-    #news {
-      // border-top: 2px solid #ccc;
+    .news-content {
       margin: 20px 0;
       height: 400px;
       overflow: scroll;
@@ -101,8 +102,16 @@ html, body, h1, h2, h3, h4, h5, h6, div, p, ul, li, input, textarea {
             font-size: 14px;
             margin-top: 16px;
           }
+          &__published {
+            color: #aaa;
+            text-align: right;
+            font-size: 14px;
+            margin-top: 5px;
+            margin-right: 5px;
+          }
         }
       }
+
       .headline:hover {
         background-color: #f4f4f4;
       }

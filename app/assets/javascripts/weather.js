@@ -9,9 +9,9 @@ $(function(){
                        Snow: "雪", 
                        Drizzle: "霧雨", 
                        Thunderstorm: "雷", 
-                       Mist: "霧", 
+                       Mist: "靄(もや)", 
                        Smoke: "スモッグ",
-                       Haze: "靄",
+                       Haze: "霞(かすみ)",
                        dust: "砂塵",
                        Fog: "霧",
                        Sand: "砂嵐",
@@ -63,7 +63,7 @@ $(function(){
       return "#6b72ff, #000cff";
 
       // 深夜  
-      case 1 <= hour && hour <= 4:
+      case 0 <= hour && hour <= 4:
           
       return "#90218c, #009b90";
     }
@@ -101,16 +101,16 @@ $(function(){
     return html;
   }
 
-  function todayWeatherHTML(data, today_flag = true) {
+  function todayWeatherHTML(data) {
     var icon = data.weather[0].icon;
     convert_japanese_weather_main(data, 0, true);
     var weather = data.weather[0].main;
     var date = new Date;
     date.setHours(date.getHours() + 9);
-    // today_flag ? img = `<img src="https://static.tenki.jp/images/icon/forecast/map/japan.png" width="370" height="250">` : img = ""
+
     var html = `<div class="today-weather-report">
                   <div class="today-content">
-                    <h4 class="today-header">今日の天気</h4>
+                    <h4 class="today-header">現在の天気</h4>
                     <img src="http://openweathermap.org/img/w/${icon}.png" width="100" height="100" class="today-weather-report__icon">
                     <div class="today-weather-report__main">${weather}</div>
                     <div class="today-weather-report__temp">${Math.round(data.main.temp)}℃</div>
@@ -129,9 +129,7 @@ $(function(){
     })
     .done(function(data){
       var insertHTML = "";
-      if (city_name == "Shibuya") {
-        city_name = "渋谷";
-      }
+      
       data.city.name = city_name;
       var cityName = `<h2>${data.city.name}</h2>`;
       $("#city-name").html(cityName);
@@ -161,18 +159,41 @@ $(function(){
       
     })
     .fail(function(data){
-      alert("そんな都市ないよ");
+
     });
   }
 
   var API_KEY = "f7510bfde5d75e003a1eae68b3a7174a";
-  var city_id = "Shibuya";
-  var city_name = "Shibuya";
+  var city_id = "shibuya";
+  var city_name = "渋谷";
+
+  $(".custom-select").on("change", function(){
+    if ($.trim($(this).val()) === "") {
+    }
+    else {
+      city_id = $(this).val();
+      city_name = $(".custom-select option:selected").text();
+      showWeather(city_id, city_name, API_KEY);
+      showTodayWeather(city_id, API_KEY);
+      console.log(city_id);
+    }
+  });
+
+  $(".search-btn").on("change", function(){
+    if ($.trim($(this).val()) === "") {
+    }
+    else {
+      city_id = $(this).val();
+      city_name = $(this).val();
+      showWeather(city_id, city_name, API_KEY);
+      showTodayWeather(city_id, API_KEY);
+      console.log(city_id);
+    }
+  });
 
   showWeather(city_id, city_name, API_KEY);
+
   showTodayWeather(city_id, API_KEY);
-
-
 
   setInterval(showDate, 1000);
 
