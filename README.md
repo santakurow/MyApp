@@ -1,7 +1,10 @@
 # README
 
-お手軽お天気＆ニュースアプリ
+お手軽な天気＆ニュースアプリ
 
+APIはOpenWeatherMapとNewsAPIを使用
+
+主にJavascriptをメインに記述
 
 * Ruby version
   2.5.1
