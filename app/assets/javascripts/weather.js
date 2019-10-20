@@ -93,7 +93,7 @@ $(function(){
     var icon = data.list[i].weather[0].icon;
     convert_japanese_weather_main(data, i, false);
     var html = `<div class="weather-report">
-                  <img src="http://openweathermap.org/img/w/${icon}.png">
+                  <img src="https://openweathermap.org/img/w/${icon}.png">
                   <div class="weather-report__date">${date.getHours() + ":00"}</div>
                   <div class="weather-report__main">${data.list[i].weather[0].main}</div>
                   <div class="weather-report__temp">${Math.round(data.list[i].main.temp)}℃</div>
@@ -111,7 +111,7 @@ $(function(){
     var html = `<div class="today-weather-report">
                   <div class="today-content">
                     <h4 class="today-header">現在の天気</h4>
-                    <img src="http://openweathermap.org/img/w/${icon}.png" width="100" height="100" class="today-weather-report__icon">
+                    <img src="https://openweathermap.org/img/w/${icon}.png" width="100" height="100" class="today-weather-report__icon">
                     <div class="today-weather-report__main">${weather}</div>
                     <div class="today-weather-report__temp">${Math.round(data.main.temp)}℃</div>
                   </div>
@@ -121,7 +121,7 @@ $(function(){
 
  
   function showWeather(city_id, city_name, api_key) {
-    var url = 'http://api.openweathermap.org/data/2.5/forecast?q=' + city_id + ',jp&units=metric&lang=ja&APPID=' + api_key;
+    var url = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city_id + ',jp&units=metric&lang=ja&APPID=' + api_key;
     $.ajax({
       url: url,
       dataType: "json",
@@ -147,7 +147,7 @@ $(function(){
   }
 
   function showTodayWeather(city_id, api_key) {
-    var today_url = 'http://api.openweathermap.org/data/2.5/weather?q=' + city_id + ',jp&units=metric&lang=ja&APPID=' + api_key;
+    var today_url = 'https://api.openweathermap.org/data/2.5/weather?q=' + city_id + ',jp&units=metric&lang=ja&APPID=' + api_key;
     $.ajax({
       url: today_url,
       dataType: "json",
