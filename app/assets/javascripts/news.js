@@ -64,4 +64,5 @@ $(function(){
 
   var health_url = urls.health;
   newsContent(health_url, "health");
+  
 })

@@ -11,6 +11,26 @@ html, body, h1, h2, h3, h4, h5, h6, div, p, ul, li, input, textarea {
   padding: 0;
 }
 
+.wrapper {
+  // background-color: #f4f4f4;
+  // background-image: url("https://d1f5hsy4d47upe.cloudfront.net/89/899727ac6187d686f070efa437e20451_t.jpeg");
+  // background-size: cover;
+  // .wrapper-black {
+
+  //   background-color: rgba(0,0,0,0.3);
+  // }
+}
+
+.search-icon {
+  font-family: "FontAwesome";
+  font-style: normal;
+  font-weight: normal;
+  // text-decoration: inherit;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+
 .navbar-brand {
   color: #ddd; 
   font-weight: bold;
@@ -28,6 +48,10 @@ html, body, h1, h2, h3, h4, h5, h6, div, p, ul, li, input, textarea {
 .jump-to-url:hover {
   color: black;
   text-decoration: none;
+}
+
+.card {
+  border-radius: 20px;
 }
 
 .row {
@@ -67,8 +91,10 @@ html, body, h1, h2, h3, h4, h5, h6, div, p, ul, li, input, textarea {
     }
     .card-header {
       padding: 20px;
+      
     }
     .card-body {
+      
       padding-left: 0;
       padding-right: 0;
     }

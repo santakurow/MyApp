@@ -35,6 +35,25 @@ $(function(){
     }
   }
 
+  var convert_japanese_city_name = function(city_name) {
+    var citys = $("#city-name").data("citys");
+    for (var i = 0; i < citys.length; i++) {
+      if (city_name == citys[i].roman.toLowerCase()) {
+        return citys[i].name;
+      }
+    }
+  }
+
+  var revers_convert_roman = function(city_name) {
+    var citys = $("#city-name").data("citys");
+    for (var i = 0; i < citys.length; i++) {
+      if (city_name == citys[i].name) {
+        return citys[i].roman;
+      }
+    }
+  }
+
+
   var sample = function(hour) {
     switch(true) {
       // 早朝
@@ -120,64 +139,86 @@ $(function(){
   }
 
  
+  // ５日間の天気 (１週間の天気もあるようだがAPIが有料になるため割愛 ^^;）
   function showWeather(city_id, city_name, api_key) {
-    var url = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city_id + ',jp&units=metric&lang=ja&APPID=' + api_key;
-    $.ajax({
-      url: url,
-      dataType: "json",
-      type: "GET"
-    })
-    .done(function(data){
-      var insertHTML = "";
-      
-      data.city.name = city_name;
-      var cityName = `<h2>${data.city.name}</h2>`;
-      $("#city-name").html(cityName);
-      
-      // 3時間ごとの天気
-      for (var i = 0; i <= 8; i += 1) {
-        insertHTML += buildHTML(data, i);
-      }
-      $('#weather').html(insertHTML);
-      $("#no-select").prop("disabled", true);
-    })
-    .fail(function(data){
-      console.log("失敗しました");
-    });
+
+    // 日本語からローマ字に変換
+    var city_conv_id = revers_convert_roman(city_id);
+    if (revers_convert_roman(city_id) == undefined) {
+      console.log("fail");
+    }
+    else {
+      console.log(city_conv_id);
+      var url = 'https://api.openweathermap.org/data/2.5/forecast?q=' + city_conv_id + ',jp&units=metric&lang=ja&APPID=' + api_key;
+      $.ajax({
+        url: url,
+        dataType: "json",
+        type: "GET"
+      })
+      .done(function(data){
+        // console.log(city_name);
+        var insertHTML = "";
+
+        // 地域名の表示
+        if (data.city.name == revers_convert_roman(city_name)) {
+          // data.city.name = city_name;
+          console.log(city_name);
+          var cityName = `<h2>${city_name}</h2>`;
+          $("#city-name").html(cityName);
+        }
+        
+        // 3時間ごとの天気
+        for (var i = 0; i <= 8; i += 1) {
+          insertHTML += buildHTML(data, i);
+        }
+        $('#weather').html(insertHTML);
+        $("#no-select").prop("disabled", true);
+      })
+      .fail(function(data){
+        console.log("失敗しました");
+      });
+    }
   }
 
-  function showTodayWeather(city_id, api_key) {
-    var today_url = 'https://api.openweathermap.org/data/2.5/weather?q=' + city_id + ',jp&units=metric&lang=ja&APPID=' + api_key;
-    $.ajax({
-      url: today_url,
-      dataType: "json",
-      type: "GET"
-    })
-    .done(function(data) {
-      var insertHTML = todayWeatherHTML(data);
-      $('#today-weather').html(insertHTML);
-      
-    })
-    .fail(function(data){
-
-    });
+  // 今日の天気
+  function showTodayWeather(city_id, city_name, api_key) {
+    var city_conv_id = revers_convert_roman(city_id);
+    if (revers_convert_roman(city_id) == undefined) {
+      console.log("today fail")
+    }
+    else {
+      var today_url = 'https://api.openweathermap.org/data/2.5/weather?q=' + city_conv_id + ',jp&units=metric&lang=ja&APPID=' + api_key;
+      $.ajax({
+        url: today_url,
+        dataType: "json",
+        type: "GET"
+      })
+      .done(function(data) {
+        var insertHTML = todayWeatherHTML(data);
+        $('#today-weather').html(insertHTML);
+        
+      })
+      .fail(function(data){
+        
+      });
+    }
   }
 
   var API_KEY = "f7510bfde5d75e003a1eae68b3a7174a";
-  var city_id = "shibuya";
-  var city_name = "渋谷";
+  var city_id = "渋谷区";
+  var city_name = "渋谷区";
 
-  $(".custom-select").on("change", function(){
-    if ($.trim($(this).val()) === "") {
-    }
-    else {
-      city_id = $(this).val();
-      city_name = $(".custom-select option:selected").text();
-      showWeather(city_id, city_name, API_KEY);
-      showTodayWeather(city_id, API_KEY);
-      console.log(city_id);
-    }
-  });
+  // $(".custom-select").on("change", function(){
+  //   if ($.trim($(this).val()) === "") {
+  //   }
+  //   else {
+  //     city_id = $(this).val();
+  //     city_name = $(".custom-select option:selected").text();
+  //     showWeather(city_id, city_name, API_KEY);
+  //     showTodayWeather(city_id, API_KEY);
+  //     // console.log(city_id);
+  //   }
+  // });
 
   $(".search-btn").on("change", function(){
     if ($.trim($(this).val()) === "") {
@@ -186,14 +227,15 @@ $(function(){
       city_id = $(this).val();
       city_name = $(this).val();
       showWeather(city_id, city_name, API_KEY);
-      showTodayWeather(city_id, API_KEY);
-      console.log(city_id);
+      showTodayWeather(city_id, city_name, API_KEY);
+      // console.log(city_id);
+      
     }
   });
 
   showWeather(city_id, city_name, API_KEY);
 
-  showTodayWeather(city_id, API_KEY);
+  showTodayWeather(city_id, city_name, API_KEY);
 
   setInterval(showDate, 1000);
 
